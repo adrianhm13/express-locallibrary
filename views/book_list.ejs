@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <%- include('./partials/head.ejs', {title}) %>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <%- include('./partials/sidebar.ejs') %>
+        <div class="col-sm-10">
+          <h1><%= title %></h1>
+          <ul>
+            <% books_list.forEach(book => { %>
+            <li><a href=<%= book.url %>><%= book.title %></a> | <%= book.author.name %></li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
