@@ -1,49 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      ,
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+  <%- include('./partials/head.ejs', {title}) %>
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-2">
-          <ul class="sidebar-nav">
-            <li><a href="/catalog">Home</a></li>
-            <li><a href="/catalog/books">Books</a></li>
-            <li><a href="/catalog/authors">Authors</a></li>
-            <li><a href="/catalog/genres">Genres</a></li>
-            <li><a href="/catalog/bookinstances">Book Instances</a></li>
-            <li><hr /></li>
-            <li><a href="/catalog/author/create">Create new author</a></li>
-            <li><a href="/catalog/genre/create">Create new genre</a></li>
-            <li><a href="/catalog/book/create">Create new book</a></li>
-            <li>
-              <a href="/catalog/bookinstance/create"
-                >Create new book instance</a
-              >
-            </li>
+        <%- include('./partials/sidebar.ejs') %>
+        <div class="col-sm-10">
+          <h1><%= title %></h1>
+          <p>Welcome to <em>LocalLibrary</em>, a very basic Express website</p>
+          <hr />
+          <h1>Dynamic Content</h1>
+          <% if(error) { %>
+          <p>Error getting dynamic content</p>
+          <% } else { %>
+          <p>The library has the following record counts:</p>
+          <hr />
+          <ul>
+            <li><strong>Books:</strong> <%= data.book_count %></li>
+            <li><strong>Copies:</strong> <%= data.book_instance_count %></li>
+            <li><strong>Copies Available:</strong> <%= data.book_instance_available_count %></li>
+            <li><strong>Authors:</strong> <%= data.author_count %></li>
+            <li><strong>Genre:</strong> <%= data.genre_count %></li>
           </ul>
+          <% } %>
         </div>
       </div>
-      <div class="col-sm-10"></div>
     </div>
   </body>
 </html>
